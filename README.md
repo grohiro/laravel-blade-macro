@@ -1,7 +1,7 @@
 laravel-blade-macro
 ===================
 
-`BladeMacro` defines reusable template blocks.
+LaravelBladeMacro defines reusable template blocks.
 
 
 **form.blade.php**
@@ -53,7 +53,7 @@ laravel-blade-macro
 **start/global.php**
 
 ```
-\BladeMacro::register();
+\Grohiro\LaravelBladeMacro\Macro::register();
 ```
 
 ## Helper
@@ -62,10 +62,10 @@ laravel-blade-macro
 **start/global.php**
 
 ```
-\BladeMacro::registerPHP();
+\Grohiro\LaravelBladeMacro\Macro::registerPHP();
 ```
 
-***.blade.php**
+**\*.blade.php**
 
 ```
 @macro('bootstrap_input', $opts = array())
@@ -78,7 +78,7 @@ laravel-blade-macro
 ```
 
 ```
-\BladeMacro::registerPHP('code'); // change directive to @code()
+\Grohiro\LaravelBladeMacro\Macro::registerPHP('code'); // change directive to @code()
 ```
 
 

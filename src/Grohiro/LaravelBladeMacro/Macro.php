@@ -1,16 +1,17 @@
 <?php
+namespace Grohiro\LaravelBladeMacro;
 /**
  * Laravel Blade `@macro` directive
  *
  * <pre>
- * \BladeMacro::register(); // @macro(),@endmacro()
- * \BladeMacro::registerPHP(); // @php($val = 'hoge') ~> <?php ($val = 'hoge') ?>
- * \BladeMacro::registerPHP('code'); // change directive to `@code()`
+ * \Macro::register(); // @macro(),@endmacro()
+ * \Macro::registerPHP(); // @php($val = 'hoge') ~> <?php ($val = 'hoge') ?>
+ * \Macro::registerPHP('code'); // change directive to `@code()`
  * </pre>
  */
-class BladeMacro {
+class Macro {
 
-  private function BladeMacro() {}
+  private function Macro() {}
 
   /**
    * register `@macro/@endmacro` tag
