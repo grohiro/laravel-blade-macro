@@ -80,3 +80,8 @@ laravel-blade-macro
 ```
 \BladeMacro::registerPHP('code'); // change directive to @code()
 ```
+
+
+----
+[https://twitter.com/KoudaiHirokawa](https://twitter.com/KoudaiHirokawa)
+
