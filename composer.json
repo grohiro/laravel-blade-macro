@@ -1,0 +1,13 @@
+{
+  "name": "grohiro/laravel-blade-macro",
+  "description": "Laravel Blade `@macro` directive.",
+  "keywords": ["laravel", "blade", "macro", "reusable-block"],
+  "type": "helper",
+  "license": "MIT",
+  "homepage": "https://github.com/grohiro/laravel-blade-macro",
+  "autoload": {
+    "psr-0": {
+      "Grohiro\\LaravelBladeMacro": "src/"
+    }
+  }
+}
