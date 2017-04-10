@@ -1,7 +1,8 @@
 <?php
 namespace Grohiro\LaravelBladeMacro;
 /**
- * Laravel Blade `@macro` directive
+ * Laravel Blade `@macro` directive.
+ * It supports Laravel 5+
  *
  * <pre>
  * \Macro::register(); // @macro(),@endmacro()
@@ -14,53 +15,21 @@ class Macro {
   private function Macro() {}
 
   /**
-   * register `@macro/@endmacro` tag
+   * register `@macro/@endmacro` directives
    */
   public static function register() {
 
+    $pattern = '/[\'"](\w+)[\'"],(.*)/';
     // @macro()
-    \Blade::extend(function($view, $_null) {
-
-      $pattern = '/@macro\s*\(\'(\w+)\'(\s*,\s*(.[^\n]*))?\)/';
-
-      while (preg_match($pattern, $view, $matches)) {
-
-        $code = "<?php function {$matches[1]}";
-
-        // arguments
-        if (!isset($matches[3])) {
-          $code .= "()";
-        } else {
-          $code .= "(".$matches[3].")";
-        }
-
-        $code .= " { ob_start(); ?".">";
-
-        $view = preg_replace($pattern, $code, $view, 1);
+    \Blade::directive('macro', function($expression) use ($pattern) {
+      if (preg_match($pattern, $expression, $matches)) {
+        return "<?php \Html::macro('$matches[1]', function ($matches[2]) use (\$__env) { ob_start(); ?>";
       }
-
-      return $view;
     });
 
     // @endmacro
-    \Blade::extend(function($view, $compiler) {
-      $pattern = $compiler->createPlainMatcher('endmacro');
-      $code = "\n<?php return ob_get_clean(); } ?".">\n";
-      return preg_replace($pattern, $code, $view);
-
-    });
-  }
-
-  /**
-   * register `@php()` directive
-   */
-  public static function registerPHP($tagName = 'php') {
-    \Blade::extend(function($view, $compiler) use ($tagName) {
-      $pattern = $compiler->createMatcher($tagName);
-      $code = "<?php $2 ?".">";
-      return preg_replace($pattern, $code, $view);
+    \Blade::directive('endmacro', function($expression) {
+      return "\n<?php return ob_get_clean(); }) ?".">\n";
     });
   }
 }
-
-
